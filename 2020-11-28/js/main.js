@@ -1,11 +1,12 @@
-//search for simple numbers up and down from our myNumber
+//search for simple numbers up and down from myNumber(9991999);
+//n - quantity of simple numbers we want to find;
 const searchForNum = (myNumber, n) => {
   let arr=[];
   let i = myNumber;
   number1:
   while (i<=myNumber && arr.length !== n){
     i--;
-    for (let j = 2; j < Math.sqrt(i); j++) {
+    for (let j = 2; j < Math.sqrt(myNumber); j++) {
       if (i % j === 0){
           continue number1;
       }
@@ -17,7 +18,7 @@ const searchForNum = (myNumber, n) => {
   number2:
   while (k>=myNumber && arr.length !== 2*n){
     k++;
-    for (let j = 2; j < Math.sqrt(k); j++) {
+    for (let j = 2; j < Math.sqrt(myNumber); j++) {
       if (k % j === 0){
         continue number2;
       }
@@ -26,7 +27,7 @@ const searchForNum = (myNumber, n) => {
   }
   return arr;
 }
-//calculating radius for the points
+//calculating radius for the numbers;
 const findRadius = (arr, myNumber) => {
   let newArr=[];
   for (let i=0; i<arr.length; i++){
@@ -34,7 +35,7 @@ const findRadius = (arr, myNumber) => {
   }
   return newArr;
 }
-//search for min radius value
+//search for min radius value;
 const findMin = (arr) => {
   let min = arr[0];
   let index = null;
@@ -47,12 +48,11 @@ const findMin = (arr) => {
   return index;
 }
 
-let myNumArray = searchForNum(5, 2);
-let myRadius = findRadius(myNumArray, 5);
+let myNumArray = searchForNum(9991999, 3);
+let myRadius = findRadius(myNumArray, 9991999);
 let getIndex = findMin(myRadius);
-/* console.log(myNumArray); */
 
-//calculating the closer simple numbers
+//calculating the closer simple numbers;
 if (myRadius[getIndex-1]>myRadius[getIndex+1]){
   console.log(myNumArray[getIndex], myNumArray[getIndex+1]);
 } else if (myRadius[getIndex-1]===myRadius[getIndex+1]){
