@@ -38,11 +38,9 @@ let array2 = [];
 for(let i = 0; i<10; i += 1) {
   array1.push(Math.floor(Math.random()*100));
 }
-
 for (let i = 0; i <array1.length; i +=1){
   array2.push((array1[i] * 3) - 5);
 }
-
 console.log(array1);
 console.log(array2);
 
@@ -60,4 +58,4 @@ while (c<max) {
   arr1.push(c);
   count += 1; 
 }
-console.log(arr1[count-2], count);
+console.log(arr1[count-2], count-1);
