@@ -4,7 +4,7 @@ const randomInt = (min, max) => {
   return Math.floor(rand);
 }
 
-const newMatrix = (n,m) => { //create 2d matrix
+const newMatrix = (n,m) => { //creating random 2d matrix
   let newArr = [];
   for (let i=0; i<n; i++){
     newArr.push([]);
@@ -16,9 +16,9 @@ const newMatrix = (n,m) => { //create 2d matrix
 }
 
 const matrix = newMatrix(5, 5);
-console.log(matrix);
+console.table(matrix);
 
-const copyOfArray = arr => { //make a copy of an array for further use in order to avoid overwriting
+const copyOfArray = arr => { //making a copy of an array for further use in order to avoid overwriting
   const matrCopy = []; 
   for (i=0; i<arr.length; i++){
     matrCopy[i] = [];
@@ -34,7 +34,7 @@ const matrix2 = copyOfArray(matrix);
 
 
 //second task
-const sumMainDiag = arr => { //find sum of items of main diagonal
+const sumMainDiag = arr => { //finding sum of items of main diagonal
   let sum = 0;
   for (let i=0; i<arr.length; i++){
     sum = sum + arr[i][i];   
@@ -49,7 +49,7 @@ console.log('Sum of main diagonal =', mainDiagSum);
 
 
 //third task
-const sumSideDiag = arr => {  //find sum of items of side diagonal
+const sumSideDiag = arr => {  //finding sum of items of side diagonal
   let sum = 0;
   for (let i=0; i<arr.length; i++){
     sum = sum + arr[i][arr.length-1 - i];   
@@ -72,7 +72,7 @@ const arraySwap = (arr, n, m) => {  //swapping columns in an array
   return arr;
 }
 
-console.log(arraySwap(matrix2, 0, 1)); //matrix2 is used here in order to avoid overwriting an array
+console.table(arraySwap(matrix2, 0, 1)); //matrix2 is used here in order to avoid overwriting an array
 
 
 
@@ -93,9 +93,9 @@ const findMaxSum = arr => {  //finding max sum of columns and returning an index
   return index;
 }
 
-const matrix3 = copyOfArray(matrix); //create matrix3 in order to avoid overwriting an array
+const matrix3 = copyOfArray(matrix); //creating matrix3 in order to avoid overwriting an array
 
-if ((findMaxSum(matrix) !== matrix.length-1) && (findMaxSum(matrix) !== 0)){  //filling out "0" in array between the range (0;index) && (index;0)
+if ((findMaxSum(matrix) !== matrix.length-1) && (findMaxSum(matrix) !== 0)){  //filling out "0" in array between the range (0;index) && (index;array.length)
   for (let i=0; i<matrix.length; i++){
     for (let j=0; j<findMaxSum(matrix); j++){
       matrix3[i][j] = 0;
@@ -105,7 +105,7 @@ if ((findMaxSum(matrix) !== matrix.length-1) && (findMaxSum(matrix) !== 0)){  //
     } 
   }
 } else if (findMaxSum(matrix) === 0){
-  for (let i=1; i<matrix.length; i++){
+  for (let i=0; i<matrix.length; i++){
     for (let j=1; j<matrix[0].length; j++){
       matrix3[i][j] = 0;
     } 
@@ -118,4 +118,4 @@ if ((findMaxSum(matrix) !== matrix.length-1) && (findMaxSum(matrix) !== 0)){  //
   }
 }
 
-console.log(matrix3);
+console.table(matrix3);
