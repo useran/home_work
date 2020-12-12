@@ -1,159 +1,119 @@
+//first level
+
+let mainEl = document.querySelector('.main');
+let secondEl = document.querySelector('.second');
+let str = '';
+
+//random function
 const randomInt = (min, max) => {
   let rand = min + Math.random() * (max + 1 - min);
   return Math.floor(rand);
 }
 
-const getNewObject = (rows, columns, min, max) => { //create 2d matrix
-  const newObj = {};
-  for (let i=0; i<rows; i++){
-    newObj.id = `${i}${j}`;
-    newObj.value = randomInt(min, max);
-    newArr[i][j] = newObj;
-  }
-  return newArr;
+//function-constructor
+function Ship(hp, dmg, name) {
+  this.hp = hp;
+  this.dmg = dmg;
+  this.name = name;
 }
 
-const arr = getArray(5, 5, 0, 12);
+const ship1 = new Ship(100, 4, 'ship1');
+const ship2 = new Ship(40, 15, 'ship2');
 
-console.table(arr);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* //first task
-const randomInt = (min, max) => {
-  let rand = min + Math.random() * (max + 1 - min);
-  return Math.floor(rand);
+let count = 0;
+while (ship1.hp > 0 && ship2.hp > 0){
+  ship1.hp = ship1.hp - ship2.dmg;
+  ship2.hp = ship2.hp - ship1.dmg;
+  count += 1;
+  str = `${str} Round ${count} <div>ship1.hp=${ship1.hp}; ship2.hp=${ship2.hp}</div><br>`;
 }
 
-const newMatrix = (n,m) => { //creating random 2d matrix
+mainEl.innerHTML = str;
+
+//finding a winner
+if (ship1.hp > ship2.hp){
+  secondEl.innerHTML = '<hr>The Winner is Ship1';
+} else secondEl.innerHTML = 'The Winner is Ship2<br><hr>';
+
+
+
+//2nd level
+
+let thirdEl = document.querySelector('.third');
+let forthEl = document.querySelector('.forth');
+let fifthEl = document.querySelector('.fifth');
+let sixEl = document.querySelector('.six');
+let str2 = '';
+let str3 = '';
+let str4 = '';
+let str5 = '';
+let str6 = '';
+
+//creating ship-objects
+const destroyer = new Ship(45, 10, 'destroyer');
+const battleship = new Ship(100, 4, 'battleship'); 
+const carrier = new Ship(15, 40, 'carrier'); 
+const cruiser = new Ship(60, 8, 'cruiser'); 
+
+//creating an array fot random pick
+const fleet = [destroyer, battleship, carrier, cruiser];
+
+//creating a fleet
+const newFleet = n => {
   let newArr = [];
   for (let i=0; i<n; i++){
-    newArr.push([]);
-    for (let j=0; j<m; j++){
-      newArr[i][j] = randomInt(0, 12);
-    }
+    newArr.push(fleet[randomInt(0, fleet.length-1)]);
   }
   return newArr;
 }
 
-const matrix = newMatrix(5, 5);
-console.table(matrix);
+const fleet1 = newFleet(10);
+const fleet2 = newFleet(10);
 
-const copyOfArray = arr => { //making a copy of an array for further use in order to avoid overwriting
-  const matrCopy = []; 
-  for (i=0; i<arr.length; i++){
-    matrCopy[i] = [];
-    for (j=0; j<arr[0].length; j++){
-      matrCopy[i][j] = arr[i][j];
-    }
+//output of ships to see the ships a fleet consists of 
+for (i=0; i<fleet1.length; i++){
+   str5= `${str5} ${fleet1[i].name}`;
+   str6=`${str6} ${fleet2[i].name}`;
+}
+fifthEl.innerHTML = `Fleet1: ${str5}`;
+sixEl.innerHTML = `Fleet2: ${str6}<hr>`;
+
+let newCount = 0;
+
+//running a battle until one of the fleets doesn't have a ship
+while (fleet1.length > 0 && fleet2.length > 0){
+  
+  //initializing of random index of ships which fire and get damaged from both fleets
+  let shipFireFleet2 = randomInt(0, fleet2.length-1);
+  let shipDmgFleet1 = randomInt(0, fleet1.length-1);
+  let shipFireFleet1 = randomInt(0, fleet1.length-1);
+  let shipDmgFleet2 = randomInt(0, fleet2.length-1);
+ 
+  //calculating of damage which ship from Fleet1 caused to a ship from Fleet2 
+  fleet2[shipDmgFleet2].hp = fleet2[shipDmgFleet2].hp - fleet1[shipFireFleet1].dmg;
+
+  //checking if hp is not equal 0 or less than 0 after round
+  if (fleet2[shipDmgFleet2].hp <= 0){
+    str4 = `${fleet2[shipDmgFleet2].name} (FLEET2) has been sinked by ${fleet1[shipFireFleet1].name}`;  
+    fleet2.splice(shipDmgFleet2, 1); 
+  } else {
+    str4 = `${fleet1[shipFireFleet1].name} (FLEET1) damaged ${fleet2[shipDmgFleet2].name} -- No sinked ship at this round`;
+    fleet1[shipDmgFleet1].hp = fleet1[shipDmgFleet1].hp - fleet2[shipFireFleet2].dmg;
+    
+  //checking if hp is not equal 0 or less than 0 after round  
+    if (fleet1[shipDmgFleet1].hp <= 0){
+      str3 = `<div>${fleet1[shipDmgFleet1].name} (FLEET1) has been sinked by ${fleet2[shipFireFleet2].name}</div>`;
+      fleet1.splice(shipDmgFleet1, 1);  
+    } else str3 = `<div>${fleet2[shipFireFleet2].name}(FLEET2) damaged ${fleet1[shipDmgFleet1].name} -- No sinked ship at this round</div>`;
   }
-  return matrCopy;
+
+  newCount += 1;
+  str2 = `${str2} Round ${newCount}<div>${str4}${str3}</div><br>`;
 }
 
-const matrix2 = copyOfArray(matrix);
+thirdEl.innerHTML = str2;
 
-
-
-//second task
-const sumMainDiag = arr => { //finding sum of items of main diagonal
-  let sum = 0;
-  for (let i=0; i<arr.length; i++){
-    sum = sum + arr[i][i];   
-  }
-  return sum;
-}
-
-let mainDiagSum = sumMainDiag(matrix);
-
-console.log('Sum of main diagonal =', mainDiagSum);
-
-
-
-//third task
-const sumSideDiag = arr => {  //finding sum of items of side diagonal
-  let sum = 0;
-  for (let i=0; i<arr.length; i++){
-    sum = sum + arr[i][arr.length-1 - i];   
-  }
-  return sum;
-}
-
-let sideDiagSum = sumSideDiag(matrix);
-console.log('Sum of side diagonal =', sideDiagSum);
-
-
-
-//forth task
-const arraySwap = (arr, n, m) => {  //swapping columns in an array
-  for (let i=0; i<arr.length; i++){
-    temp = arr[i][n]; 
-    arr[i][n] = arr[i][m];
-    arr[i][m] = temp;
-  }
-  return arr;
-}
-
-console.table(arraySwap(matrix2, 0, 1)); //matrix2 is used here in order to avoid overwriting an array
-
-
-
-//fifth task
-const findMaxSum = arr => {  //finding max sum of columns and returning an index of the max column
-  let sumMax=0;
-  let index=null; 
-  for (let j=0; j<arr.length; j++){
-    let sum=0;
-    for (let i=0; i<arr.length; i++){
-      sum = sum + arr[i][j];
-    } 
-    if (sumMax < sum){
-      sumMax = sum;
-      index = j;
-    }
-  }
-  return index;
-}
-
-const matrix3 = copyOfArray(matrix); //creating matrix3 in order to avoid overwriting an array
-
-if ((findMaxSum(matrix) !== matrix.length-1) && (findMaxSum(matrix) !== 0)){  //filling out "0" in array between the range (0;index) && (index;array.length)
-  for (let i=0; i<matrix.length; i++){
-    for (let j=0; j<findMaxSum(matrix); j++){
-      matrix3[i][j] = 0;
-    } 
-    for (let j=findMaxSum(matrix)+1; j<matrix[0].length; j++){
-      matrix3[i][j] = 0;
-    } 
-  }
-} else if (findMaxSum(matrix) === 0){
-  for (let i=0; i<matrix.length; i++){
-    for (let j=1; j<matrix[0].length; j++){
-      matrix3[i][j] = 0;
-    } 
-  }
-} else if (findMaxSum(matrix) === matrix.length-1){
-  for (let i=0; i<matrix.length; i++){
-    for (let j=0; j<matrix[0].length-1; j++){
-      matrix3[i][j] = 0;
-    } 
-  }
-}
-
-console.table(matrix3); */
+//finding a winner
+if (fleet1.length > fleet2.length){
+  forthEl.innerHTML = `<hr>The Winner is Fleet1 with ${fleet1.length} ship left`;
+} else forthEl.innerHTML = `<hr>The Winner is Fleet2 with ${fleet2.length} ship left`;
