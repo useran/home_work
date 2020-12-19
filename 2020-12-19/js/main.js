@@ -6,7 +6,7 @@ inputArray.forEach(element => {
 });
 
 //b - new array [element + 20]
-let twentyAdd = inputArray.map(element => element +20);
+let twentyAdd = inputArray.map(element => element + 20);
 console.log(twentyAdd);
 
 //c - odd nmbers > 0
@@ -28,12 +28,12 @@ const checkNum = (array, number) => {
 checkNum(inputArray, 5);
 
 //f - new array without [0] element
-let firstOut = inputArray.map(element => element);
+let firstOut = inputArray.map(element);
 firstOut.shift();
 console.log(firstOut);
 
 //g - new array (sorted)
-let sortNum = inputArray.map(element => element);
+let sortNum = inputArray.map(element);
 console.log(sortNum.sort((a, b) => a - b));
 
 //h - check for element % number === 0
