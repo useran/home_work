@@ -29,9 +29,9 @@ router.get('/', function(req, res) {
     })
     return probes;
   })
-  // creating a render arr for output
-  .then(() => {
-    Promise.all(probes).then(r => {
+  // creating a render obj for output
+  .then(r => {
+    Promise.all(r).then(r => {
       return r.map(e => {
         return {width: e.width, height: e.height}
       })
