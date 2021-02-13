@@ -13,9 +13,7 @@ picsEl.forEach(e => {
   e.addEventListener('click', event => {
     axios
       .get(getUrl(event.target.innerHTML))
-      .then(r => {
-        event.target.style.backgroundImage = `url(${r.data.message})`;
-      })
+      .then(r => event.target.style.backgroundImage = `url(${r.data.message})`)
       .catch(err => console.log('>>> err= ', err))
   })
 })

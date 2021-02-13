@@ -7,8 +7,8 @@
   <body>
     <div class='main'>
       <% picObjArr.forEach(e => { %>
-        <div class='wrapper'>
-          <div id='<%= e.id %>' class='pics' style='background-image: url(<%= e.url %>)'><%= e.breed %></div>
+        <div class='wrapper'> 
+          <div class='pics' style='background-image: url("<%= e.url %>")'><%= e.breed %></div>
           <div class='txt'><%= e.breed %></div>
         </div>
       <%}) %>
