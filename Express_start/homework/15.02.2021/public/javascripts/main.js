@@ -1,7 +1,7 @@
 const form = document.querySelector("form");
 const answEl = document.querySelector(".wrapper");
 
-form.addEventListener("submit", function(event) {
+form.addEventListener("change", function(event) {
   event.preventDefault();
   const data = new FormData(form); 
   axios.post('/', data)

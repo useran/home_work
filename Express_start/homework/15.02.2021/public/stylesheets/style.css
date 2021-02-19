@@ -52,16 +52,13 @@ img{
   justify-content: space-around;
 }
 .wrap2 {
-  width: 1400px;
   display: flex;
   justify-content: space-around;
   flex-direction: column;
   flex-wrap: wrap;
-  margin-right: 50px;
 }
 .wrap3 {
   display: flex;
-  margin-right: 50px;
   flex-wrap: wrap;
 }
 
