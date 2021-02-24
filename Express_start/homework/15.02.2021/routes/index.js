@@ -35,34 +35,41 @@ router.post('/', upload.none(), async (req, res) => {
   })
 
   //creating an object array which will contain all the objects keys
-  const objCatInfoArr = [];
-  catObjArr.forEach((e, index) => { 
-    if (e.image && e.image.url) {
-      objCatInfoArr.push({id: e.country_code, name: e.name, url: e.image.url, flag: flagLinks[index], country: namesLinks[index]});
-    }
-  })
-
-  //getting non-repetitive country codes in order to group the "one country" cats
-  const resultArr = [];
-  const nonRepArr = [];
-  objCatInfoArr.forEach(e => {
-    if (!nonRepArr.includes(e.id)){
-      nonRepArr.push(e.id);
-    }
-  })
-  
-  //grouping cats by country codes
-  nonRepArr.forEach((e, index) => {
-    resultArr[index] = [];
-    objCatInfoArr.forEach(element => {
-      if (e === element.id){
-        resultArr[index].push(element);
+  const objCatInfoArr = catObjArr.map((e, index) => {
+    return new Promise((resolve, reject) => {
+      if (e.image && e.image.url) {
+        resolve({id: e.country_code, name: e.name, url: e.image.url, flag: flagLinks[index], country: namesLinks[index]});
+      } else {
+        axios.get(`https://api.thecatapi.com/v1/images/search?breed_id=${e.id}`)
+          .then(r => {
+            resolve({id: e.country_code, name: e.name, url: r.data[0].url, flag: flagLinks[index], country: namesLinks[index]});
+          })
+          .catch(er => console.log('>>>>er:', er));
       }
     })
   })
-
-  res.send(resultArr);
-
-});
+  
+  //getting non-repetitive country codes in order to group the "one country" cats
+  const resultArr = [];
+  const nonRepArr = [];
+  Promise.all(objCatInfoArr)
+    .then(r => {
+      r.forEach(e => {
+        if (!nonRepArr.includes(e.id)){
+          nonRepArr.push(e.id);
+        }
+      });
+      nonRepArr.forEach((e, index) => {
+        resultArr[index] = [];
+        r.forEach(element => {
+          if (e === element.id){
+            resultArr[index].push(element);
+          }
+        });
+      })
+      res.send(resultArr);
+    })
+    .catch(er => console.log('>>>>er:', er));
+})
 
 module.exports = router;
