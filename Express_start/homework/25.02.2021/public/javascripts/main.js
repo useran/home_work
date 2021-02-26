@@ -1,10 +1,10 @@
-const axios = require('axios');
+const form = document.querySelector("form");
+const answEl = document.querySelector(".wrapper");
 
-axios
-    .get('https://dou.ua/')
-    .then(r => {
-        const reg = /https:\/\/[^ ]*\.(jpg|jpeg|png|gif|svg|ico)\b/gi;
-        const output = r.data.match(reg);
-        
-        console.log(output);
-    })
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
+    const data = new FormData(form); 
+    axios.post('/', data)
+        .then(r => answEl.innerHTML = r.data)
+        .catch(er => console.log('>>>>>>er:', er));
+})

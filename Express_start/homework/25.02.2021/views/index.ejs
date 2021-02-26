@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>Multer | Form</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-
-
+    <form>
+      Filename:
+      <input type="text" name="filename">
+      <input type="file" name="file">
+      <button type="submit">Send</button>
+    </form>
+    <div class="wrapper"></div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js'></script>
     <script src='/javascripts/main.js'></script>
   </body>
 </html>
