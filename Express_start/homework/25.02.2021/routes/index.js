@@ -4,6 +4,7 @@ const multer = require('multer');
 const axios = require('axios');
 const fs = require('fs');
 const moment = require('moment');
+const path = require('path');
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -16,7 +17,8 @@ const storage = multer.diskStorage({
       cb(null, `./${timeNow}`);
   },
   filename: (req, file, cb) => {
-    cb(null, `${ req.body.filename }.${ file.originalname.slice(-3) }`);
+    const ext = file.originalname.slice(file.originalname.lastIndexOf('.')+1);
+    cb(null, `${ req.body.filename }.${ ext }`);
   }
 })
 
