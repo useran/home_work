@@ -10,15 +10,13 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', upload.none(), (req, res) => {
-  const tokens = [',', "'", '"', '\n'];
-  const values = [...Object.values(req.body)];
-  //checking if our fields contain other tokens mentioned earlier 
-  values.forEach((el, index) => {
-    tokens.forEach(e => el.includes(e) ? values[index] = `"${el}"` : false);
+  //checking if our fields contain other tokens like commas, quotes
+  const values = Object.values(req.body).map(el => {
+    return el.match(/[,'"\n\r]/) ? `"${el}"` : el;
   })
   //adding fields' content to file
   fs.appendFile('1.csv', `\n${values}`, err => {
-    err ? res.send(err) : res.send('Everything went smothly!')
+    err ? res.send(err) : res.send('Everything went smothly!');
   })
 });
 
