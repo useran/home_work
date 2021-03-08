@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Multer | Form</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <form class="upload">
+      <input type="file" name="file" multiple>
+      <button type="submit">Send</button><br>
+    </form>
+    <div class="wrapper"></div>
+    <form class="review">
+      From:
+      <input type="datetime-local" name="date">
+      To:
+      <input type="datetime-local" name="date">
+      <button type="submit">Submit</button>
+    </form>
+    <div class="container"></div>
+    <a class="linkEl" href="/files" download>Download the files</a>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js'></script>
+    <script src='/javascripts/main.js'></script>
+  </body>
+</html>
