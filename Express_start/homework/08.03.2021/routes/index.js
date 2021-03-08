@@ -50,8 +50,10 @@ router.post('/review', upload.none(), (req, res) => {
 
 //zipping the files
 router.get('/files', (req, res) => {
-  zipdir('./uploads', { saveTo: './myzip.zip' });
-  res.sendFile(path.join(__dirname,'../myzip.zip'));
+  const zipFiles = async() => {
+    return await zipdir('./uploads', { saveTo: './myzip.zip' }); 
+  }
+  zipFiles().then(() => res.sendFile(path.join(__dirname,'../myzip.zip')));
 });
 
 module.exports = router;
