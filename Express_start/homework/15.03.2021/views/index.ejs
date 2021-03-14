@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MySQL</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <form class="select">
+      <input type="text" name="from" placeholder="from..">
+      <input type="text" name="to" placeholder="to..">
+      <input type="submit" value="Select">
+    </form>
+
+    <form class="add">
+      <input type="text" name="make" placeholder="make..">
+      <input type="text" name="model" placeholder="model..">
+      <input type="text" name="year" placeholder="year..">
+      <input type="submit" value="Insert">
+    </form>
+    
+    <form class="delete">
+      <input type="text" name="id" placeholder="id..">
+      <input type="submit" value="Delete">
+    </form>
+
+    <div class="output"></div>
+
+   
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js'></script>
+    <script src='/javascripts/main.js'></script>
+  </body>
+</html>
