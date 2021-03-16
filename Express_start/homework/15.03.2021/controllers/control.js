@@ -1,18 +1,18 @@
 const Cars = require('../model/Cars');
 
 const getCars = async(req, res) => {
-  const carEntries = await Cars.FilterCars(`${req.body.from}`, `${req.body.to}`);
+  const carEntries = await Cars.FilterCars(req.body.from, req.body.to);
   res.send(carEntries);
 } 
 
 const addCars = async(req, res) => {
-  await Cars.addNewCars(`${req.body.make}`, `${req.body.model}`, `${req.body.year}`);
+  await Cars.addNewCars(req.body.make, req.body.model, req.body.year);
   const outRes = await Cars.getAllCars();
   res.send(outRes);
 } 
 
 const deleteCars = async(req, res) => {
-  await Cars.deleteCars(`${req.body.id}`);
+  await Cars.deleteCars(req.body.id);
   const outRes = await Cars.getAllCars();
   res.send(outRes);
 } 
