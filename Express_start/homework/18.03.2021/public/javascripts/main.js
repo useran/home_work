@@ -18,6 +18,7 @@ const thenDelete = () => {
     el.addEventListener('click', event => {
       axios.post('/delete', { data: event.target.id })
         .then(thenFrame)
+        .then(thenEdit)
         .catch(e => answEl.innerHTML = `ERROR: ${e}`);
     })
   })
@@ -31,8 +32,9 @@ const thenEdit = () => {
         const currEntry = document.querySelector(`.entries-${event.target.id}`).innerHTML;
         const entryArr = currEntry.slice(0, currEntry.indexOf(' <')).split(' ');
         document.querySelector(`.entries-${event.target.id}`).innerHTML =
-          `<form class="update">
-            <input type="text" name="id" value="${event.target.id}">
+          `${entryArr[0]}
+          <form class="update">
+            <input type="text" style="display:none" name="id" value="${event.target.id}">
             <input type="text" name="make" value="${entryArr[1]}">
             <input type="text" name="model" value="${entryArr[2]}">
             <input type="text" name="year" value="${entryArr[3]}">
@@ -41,7 +43,7 @@ const thenEdit = () => {
         const formUpd = document.querySelector(".update");
         formUpd.addEventListener("submit", function(event) {
           event.preventDefault();
-          const data = new FormData(formUpd); 
+          const data = new FormData(formUpd);
           axios.post('/update', data)
             .then(thenFrame)
             .then(thenDelete)
