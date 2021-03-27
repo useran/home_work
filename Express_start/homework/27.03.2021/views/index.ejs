@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MongoDB</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="icon" href="data:;base64,=">
+  </head>
+  <body>
+    
+    <% resultsX.forEach(e => { %>
+      <% Object.entries(e).forEach(el => { %> 
+        <% const [key, value] = el %>   
+        <div><%= key %>: <%= value %></div><br>
+      <%}) %>
+      <hr>
+    <%}) %>
+    
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js'></script>
+    <script src='/javascripts/main.js'></script>
+  </body>
+</html>
