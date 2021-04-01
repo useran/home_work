@@ -37,7 +37,6 @@ const thenEdit = () => {
           <input type="text" name="salary" placeholder="salary.." value="${r.data.salary}">
           <input type="text" name="shift" placeholder="shift.." value="${r.data.shift}">
           <button id="${event.target.id}" type="submit">Update user</button>
-          <button class="tumbl" type="button">Switch Form</button><br>
         </form>`
         const selectEl = document.getElementById('select');
         selectEl.value = r.data.role;
@@ -45,14 +44,12 @@ const thenEdit = () => {
         formUpdUser.addEventListener("submit", function(event) {
           event.preventDefault();
           const data = new FormData(formUpdUser);
-          axiosHandler('/update', data);
-          formUpdUser.reset();
-        })
-        const el = document.querySelector('.tumbl'); 
-        el.addEventListener('click', function(event) {
-          event.preventDefault();
-          document.querySelector('.container').innerHTML = innerAddForm;
-          addUserFunc();
+          axios.post('/update', data)
+            .then(thenOutStr) //building an output of data gained from a database
+            .then(thenDelete) //adding "delete" functionality to the entries
+            .then(thenEdit) //adding "edit" option to the entries
+            .then(() => document.querySelector('.container').innerHTML = innerAddForm)
+            .catch(e => answEl.innerHTML = `ERROR: ${e}`);
         })
       })
     })
