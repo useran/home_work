@@ -5,10 +5,11 @@ const userSchema = new Schema({
   name: {
     type: String,
     maxLength: 250, 
-    default: ''
+    required: [true, 'Enter a name']
   }, 
   surname: {
     type: String,
+    required: [true, 'Enter a surname'],
     maxLength: 250
   }, 
   dOb: Date, 

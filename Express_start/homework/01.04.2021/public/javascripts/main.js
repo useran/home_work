@@ -58,16 +58,20 @@ const thenEdit = () => {
 
 //building an output of data gained from a database
 const thenOutStr = r => {
-  const resHtmlStr = r.data.reduce((htmlStr, el) => {
-    return `${htmlStr}<span id="${el._id}" class='alink'>${el.name}</span><button id='${el._id}' class='red-cross'>&#10060;</button>
-    <li>${el.surname}</li>
-    <li>${el.dOb}</li>
-    <li>${el.experience}</li>
-    <li>${el.role}</li>
-    <li>${el.salary}</li>
-    <li>${el.shift}</li>`
-  }, '');
-  answEl.innerHTML = resHtmlStr;
+  if (typeof(r.data) === 'string'){
+    answEl.innerHTML = r.data;
+  } else {
+    const resHtmlStr = r.data.reduce((htmlStr, el) => {
+      return `${htmlStr}<span id="${el._id}" class='alink'>${el.name}</span><button id='${el._id}' class='red-cross'>&#10060;</button>
+      <li>${el.surname}</li>
+      <li>${el.dOb}</li>
+      <li>${el.experience}</li>
+      <li>${el.role}</li>
+      <li>${el.salary}</li>
+      <li>${el.shift}</li>`
+    }, '');
+    answEl.innerHTML = resHtmlStr;
+  }
 }
 
 //adding "delete" functionality to the entries

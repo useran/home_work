@@ -7,9 +7,13 @@ const getUsers = async(req, res) => {
 
 const addNewUser = async(req, res) => {
   const newUser = new Users(req.body);
-  await newUser.save();
-  const dataOut = await Users.find({}, {__v:0});
-  res.send(dataOut);
+  try {
+    await newUser.save();
+    const dataOut = await Users.find({}, {__v:0});
+    res.send(dataOut);
+  } catch(err) {
+    res.send(err.message);
+  }
 }
 
 const deleteUser = async(req, res) => {
