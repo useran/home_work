@@ -1,0 +1,27 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.add-article {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+input {
+  margin-bottom: 10px;
+}
+textarea {
+  margin-bottom: 10px;
+  height: 150px;
+}
+li {
+  list-style: none;
+}
+select {
+  margin-bottom: 10px;
+}

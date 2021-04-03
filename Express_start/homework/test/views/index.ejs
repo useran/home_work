@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MongooseTest</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    
+    <form class="add-article">
+      <input type="text" name="title" placeholder="title..">
+      <input name='author' list="author" placeholder="author's name..">
+      <datalist id="author">
+        <% articles.forEach(e => { %>  
+          <option value="<%= e.author %>"><%= e.author %></option>
+        <%}) %>
+      </datalist>
+      <input type="date" name="date">
+      <textarea name="article" placeholder="your text.."></textarea>
+      <input type="text" name="tags" placeholder="tags..">
+      <button type="submit">Add article</button><br>
+    </form>
+
+    <div class="output"></div>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js'></script>
+    <script src="https://rawgit.com/moment/moment/2.2.1/min/moment.min.js"></script>
+    <script src='/js/main.js'></script>
+  </body>
+</html>
