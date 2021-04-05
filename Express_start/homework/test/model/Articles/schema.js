@@ -13,7 +13,6 @@ const articleSchema = new Schema({
     type: String,
     maxLength: 250, 
     required: [true, 'Enter a title'],
-    unique: true,
     match: [/^[a-zA-Z]/, 'Please start with a letter']
   },
   date: Date, 
@@ -22,7 +21,7 @@ const articleSchema = new Schema({
     required: [true, 'Type an article'],
     maxLength: 3000, 
   },
-  tags: [{ type: String, maxLength: 5}],
+  tags: [{ type: String, maxLength: 9}],
   /* { timestamps: true } */
 });
 

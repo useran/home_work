@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MongooseTest</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    
+    <form class="select">
+      From:
+      <input type="date" name="from">
+      To:
+      <input type="date" name="to">
+      <input type="submit" value="Select">
+    </form>
+
+    <form class='tags-form'>
+      Find by tag name:
+      <select name="tags" multiple>
+        <% articles.forEach(e => { %>  
+          <% e.tags.forEach(el => { %> 
+            <option value="<%= el %>"><%= el %></option>
+          <%}) %>
+        <%}) %>
+      </select>
+      <input type="submit" value="Select">
+    </form>
+
+    <div class="output"></div><br>
+    <a href="/">Click here to go back..</a>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js'></script>
+    <script src="https://rawgit.com/moment/moment/2.2.1/min/moment.min.js"></script>
+    <script src='/js/search.js'></script>
+  </body>
+</html>

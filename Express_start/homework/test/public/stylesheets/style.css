@@ -5,6 +5,8 @@ body {
 
 a {
   color: #00B7FF;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .add-article {
@@ -23,5 +25,14 @@ li {
   list-style: none;
 }
 select {
-  margin-bottom: 10px;
+  display: flex;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  width: 80px;
+}
+.output {
+  margin-top: 10px;
+}
+.select {
+  margin-bottom: 20px;
 }
