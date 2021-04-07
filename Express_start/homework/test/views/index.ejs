@@ -9,9 +9,9 @@
     <form class="add-article">
       <input type="text" name="title" placeholder="title..">
       <input name='author' list="author" placeholder="author's name..">
-      <datalist id="author">
-        <% articles.forEach(e => { %>  
-          <option value="<%= e.author %>"><%= e.author %></option>
+      <datalist class="author-el" id="author">
+        <% authorNames.forEach(e => { %>  
+          <option value="<%= e %>"><%= e %></option>
         <%}) %>
       </datalist>
       <input type="date" name="date">

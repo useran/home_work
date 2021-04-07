@@ -1,4 +1,5 @@
 const answEl = document.querySelector(".output");
+const dropEl = document.querySelector(".author-el");
 
 
 const addArtFunc = () => {
@@ -7,6 +8,13 @@ const addArtFunc = () => {
     event.preventDefault();
     const data = new FormData(formAddEl);
     axios.post('/addArticle', data)
+      .then(r => {
+        const strOut = r.data.pop().reduce((str, el) => {
+          return `${str}<option value="${el}">${el}</option>`
+        }, '')
+        dropEl.innerHTML = strOut;
+        return r;
+      })
       .then(thenOutStr)
       .then(r => {
         if (typeof(r.data) !== 'string'){

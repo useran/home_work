@@ -3,9 +3,9 @@ const router = express.Router();
 const multer = require('multer');
 const upload = multer();
 const controllers = require('../controllers/controller');
-const moment = require('moment');
 const Ajv = require("ajv");
 const ajv = new Ajv();
+const validSchema = require('./valid_Schema');
 
 
 const inputToArr = (req, res, next) => {
@@ -13,24 +13,26 @@ const inputToArr = (req, res, next) => {
   next();
 }
 
-const inputToISO = (req, res, next) => {
-  req.body.from = moment(req.body.from).toISOString();
-  req.body.to = moment(req.body.to).toISOString();
-  next();
+
+const validator = (req, res, next) => {
+
+  const schema = validSchema;
+  
+  const validate = ajv.compile(schema);
+  const valid = validate(req.body);
+  
+  if (!valid) {
+    console.log(validate.errors)
+  } else {
+    next();
+  }
 }
 
 
 
 router.get('/', controllers.getArticles);
 
-router.post('/addArticle', upload.none(), inputToArr, controllers.addNewArticle);
-
-router.get('/search', controllers.searchPage);
-
-router.post('/search/date', upload.none(), inputToISO, controllers.searchArticle);
-
-router.post('/search/tag', upload.none(), controllers.searchArticleByTag);
-
+router.post('/addArticle', upload.none(), inputToArr, validator, controllers.addNewArticle);
 
 
 

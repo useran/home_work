@@ -2,7 +2,8 @@ const Articles = require('../model/Articles/index.js');
 
 const getArticles = async(req, res) => {
   const data = await Articles.find({});
-  res.render('index', { articles: data });
+  let authorArr = [...new Set(data.map(e => e.author))];
+  res.render('index', { articles: data, authorNames: authorArr });
 } 
  
 const addNewArticle = async(req, res) => {
@@ -10,7 +11,10 @@ const addNewArticle = async(req, res) => {
   try {
     await newArticle.save();
     const dataOut = await Articles.find({}, {__v:0});
+    let authorArr = [...new Set(dataOut.map(e => e.author))];
+    dataOut.push(authorArr);
     res.send(dataOut);
+  
   } catch(err) {
     res.send(err.message);
   }
