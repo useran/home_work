@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MongoDB</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="icon" href="data:;base64,=">
+  </head>
+  <body>
+    <div class="container">
+      Find entry by salary:
+      <form class="select">
+        <input type="text" name="from" placeholder="from..">
+        <input type="text" name="to" placeholder="to..">
+        <input type="submit" value="Select">
+      </form><br>
+      Add new entry:
+      <form class="add-user">
+        <input type="text" name="name" placeholder="name..">
+        <input type="text" name="surname" placeholder="surname..">
+        <input type="text" name="role" placeholder="role..">
+        <input type="text" name="salary" placeholder="salary..">
+        <button type="submit">Add</button><br>
+      </form><br>
+      Find entry by email and delete:
+      <form class="delete-user">
+        <input type="text" name="email" placeholder="email..">
+        <button type="submit">Delete</button><br>
+      </form><br>
+      Find entry by id and update:
+      <form class="update">
+        <input type="text" name="id" placeholder="id..">
+        <input type="text" name="name" placeholder="name..">
+        <input type="text" name="salary" placeholder="salary..">
+        <button type="submit">Update</button><br>
+      </form><br>
+      Find entry by age:
+      <form class="date">
+        <input type="number" name="from" placeholder="from.." min="18" max="70">
+        <input type="number" name="to" placeholder="to.." min="18" max="70">
+        <input type="submit" value="Select">
+      </form><br>
+    </div><br>
+
+    <div class="output"></div>  
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js'></script>
+    <script src='/javascripts/main.js'></script>
+  </body>
+</html>
