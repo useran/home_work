@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const generalSchema = require('./schema.js');
 const path = require('path');
+const moment = require('moment');
 
 // search by salary
 generalSchema.statics.findBySalary = async function(from, to) {
@@ -32,7 +33,10 @@ generalSchema.statics.findByIdAndUpd = async function(id, obj) {
 
 // find by dayOfBirth
 generalSchema.statics.findByDoB = async function(from, to) {
-  const users = await this.find({ dOb: { '$gte': from, '$lte': to }}, {__v:0});
+  const timeNow = moment().valueOf();
+  let dateTo = moment(timeNow - from*31556952000).toISOString();
+  let dateFrom = moment(timeNow - to*31556952000).toISOString();
+  const users = await this.find({ dOb: { '$gte': dateFrom, '$lte': dateTo }}, {__v:0});
   return users;
 }
 
