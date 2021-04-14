@@ -49,7 +49,7 @@ generalSchema.virtual('age')
   .set(function(age){
     const timeNow = moment().format('YYYY-MM-YY').split('-');
     const diff = Number(timeNow[0]) - age;
-    this.dOb = moment(`${diff}-${timeNow[1]}-${timeNow[2]}`).toISOString();
+    this.dOb = `${diff}-${timeNow[1]}-${timeNow[2]}`;
   })
 
 generalSchema.statics.getUsersByAge = async function(from, to) {
