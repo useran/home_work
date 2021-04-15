@@ -33,23 +33,19 @@ generalSchema.statics.findByIdAndUpd = async function(id, obj) {
 
 // find by dayOfBirth
 generalSchema.statics.findByDoB = async function(from, to) {
-  const timeNow = moment().format('YYYY-MM-YY').split('-');
-  const dateTo = moment(`${Number(timeNow[0]) - from}-${timeNow[1]}-${timeNow[2]}`).toISOString();
-  const dateFrom = moment(`${Number(timeNow[0]) - to}-${timeNow[1]}-${timeNow[2]}`).toISOString();
+  const dateTo = moment().subtract(from, 'years').toISOString();
+  const dateFrom = moment().subtract(to, 'years').toISOString();
   const users = await this.find({ dOb: { '$gte': dateFrom, '$lte': dateTo }}, {__v:0});
   return users;
 }
+
 //set-up of age getter&setter
 generalSchema.virtual('age')
   .get(function() {
-    const timeNow = moment([]);
-    const dOb = moment([moment(this.dOb).format('YYYY-MM-DD').split('-')]);
-    return timeNow.diff(dOb, 'years');
+    return moment().diff(this.dOb, 'years');
   })
   .set(function(age){
-    const timeNow = moment().format('YYYY-MM-YY').split('-');
-    const diff = Number(timeNow[0]) - age;
-    this.dOb = `${diff}-${timeNow[1]}-${timeNow[2]}`;
+    this.dOb = moment().subtract(age, 'years').toISOString();
   })
 
 generalSchema.statics.getUsersByAge = async function(from, to) {

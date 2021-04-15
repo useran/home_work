@@ -51,5 +51,6 @@ module.exports = {
   deleteUserByEmail,
   findByIdUpd,
   findByAge,
-  setByAge
+  setByAge,
+  findByBirth
 }
