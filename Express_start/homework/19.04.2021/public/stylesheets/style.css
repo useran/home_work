@@ -1,0 +1,39 @@
+body {
+  padding: 50px;
+  font-size: 16px; }
+
+span {
+  color: #00B7FF;
+  text-decoration: none;
+  cursor: pointer; }
+
+li {
+  font-size: 16px;
+  list-style-type: none; }
+
+input[type=text] {
+  margin-top: 10px; }
+
+.output {
+  margin-bottom: 10px; }
+
+.edit {
+  width: 33.5px;
+  height: 23.5px;
+  font-size: 14px;
+  margin: 0;
+  padding: 0; }
+
+.update {
+  display: inline-block; }
+
+.add-user, .login {
+  display: flex;
+  flex-direction: column;
+  width: 200px; }
+
+button {
+  width: 200px;
+  margin-top: 10px; }
+
+/*# sourceMappingURL=style.css.map */
