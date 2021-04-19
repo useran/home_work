@@ -10,7 +10,7 @@ const logUserFunc = () => {
         if (!r.data) {
           answEl.innerHTML = 'Wrong login or password';
         } else {
-          window.location.href = `/welcome/?name=${r.data[0].name}`;
+          window.location.href = `/welcome/?name=${r.data.name}`;
         }
       })
       .catch(err => console.log(err))
