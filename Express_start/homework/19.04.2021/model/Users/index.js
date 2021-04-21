@@ -3,11 +3,22 @@ const userSchema = require('./schema.js');
 const path = require('path');
 const { createHash } = require('crypto');
 
-userSchema.statics.checkForPassLog = async function(email, password){
-  const dataOut = await this.findOne({ email: email }, {__v:0});
-  const tempHash = dataOut.hash;
-  dataOut.password = password;
-  return dataOut.hash === tempHash ? dataOut : false;
+userSchema.statics.createUser = async function(obj){
+  try {
+    await this.create(obj);
+    return 'OK'
+  } catch(err) {
+    return err.message;
+  }
+}
+
+userSchema.statics.findByEmail = async function(email){
+  const dataOut = await this.findOne({ email: email });
+  return dataOut;
+}
+
+userSchema.methods.checkForPassLog = function(obj){
+  return this.hash === obj.hash ? true : false;
 }
 
 userSchema.virtual('password')

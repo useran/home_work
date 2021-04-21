@@ -7,8 +7,8 @@ const addUserFunc = () => {
     event.preventDefault();
     const data = new FormData(formAddUser);
     axios.post('/register/regUser', data)
-      .then(r => console.log(r))
-      .catch(err => console.log(err))
+      .then(r => answEl.innerHTML = r.data)
+      .catch(err => answEl.innerHTML = err)
   });
 }
 
