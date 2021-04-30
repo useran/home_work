@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www"
+    "dev": "nodemon ./bin/www",
+    "dev2": "set HOST=localhost&& set PORT=3010&& nodemon ./bin/www"
   },
   "dependencies": {
     "axios": "^0.21.1",
