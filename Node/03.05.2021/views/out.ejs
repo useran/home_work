@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+
+    <div class="output"><%= message %></div><br>
+      <% data.forEach(e => { %>
+        <li><b>counter:</b> <%= e.counter %></li>
+        <li><b>id:</b> <%= e._id %></li>
+        <li><b>host:</b> <%= e.host %></li>
+        <li><b>connection:</b> <%= e.connection %></li>
+        <li><b>referer:</b> <%= e.referer %></li>
+        <hr>
+      <%}) %>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js'></script>
+    <script src="https://rawgit.com/moment/moment/2.2.1/min/moment.min.js"></script>
+    <script src='/javascripts/main.js'></script>
+  </body>
+</html>
