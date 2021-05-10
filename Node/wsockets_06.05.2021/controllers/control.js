@@ -3,7 +3,7 @@ const getIndex = async(req, res) => {
 } 
 
 const processData = async(req, res) => {
-  res.send(req.body.textbox);
+  res.sendStatus(200);
 } 
 
 
