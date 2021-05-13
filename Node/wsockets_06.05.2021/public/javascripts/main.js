@@ -34,3 +34,9 @@ socket.on('message-to-main-browser', (socketID, msg) => {
   containerEl.innerHTML = '';
   checkForElement(socketID, msg, outEl);
 });
+
+socket.on('clear', socketID => {
+  const element = document.querySelector(`#${socketID}`);
+  element.remove();
+  containerEl.innerHTML = '';
+});

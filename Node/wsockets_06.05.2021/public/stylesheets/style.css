@@ -10,3 +10,7 @@ li {
 .slider, .out {
     margin: 20px;
 }
+
+.container, .container2 {
+    margin-left: 20px;
+}
