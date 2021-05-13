@@ -9,7 +9,7 @@ const wsServer = http => {
     clients.push(socket.id);
     console.log(socket.id);
     if (socket.id !== clients[0]) {
-      socket.emit('slider', '<input type="range" min="0" max="100" value="50" class="slider">');
+      socket.emit('slider', 'true');
     
       socket.on('message', (socketID, msg) => {
         socket.emit('message-back', socketID, msg);

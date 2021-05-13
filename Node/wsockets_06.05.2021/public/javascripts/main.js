@@ -16,7 +16,7 @@ const checkForElement = (id, msg, container) => {
 }
 
 socket.on('slider', msg => {
-  containerEl.innerHTML = msg;
+  containerEl.innerHTML = '<input type="range" min="0" max="100" value="50" class="slider">';
   const sliderEl = document.querySelector('.slider');
   socket.emit('message', socket.id, sliderEl.value);
   sliderEl.addEventListener('change', event => {
