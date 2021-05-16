@@ -9,6 +9,8 @@ const passport = require('passport');
 const { RequestHeaderFieldsTooLarge } = require('http-errors');
 require('./passport-config');
 
+const indexRouter = require('./routes/index');
+
 const app = express();
 
 
@@ -39,37 +41,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('/', (req, res) => {
-  res.send('home page');
-});
-
-app.get('/login', (req, res) => {
-  res.render('index');
-});
-
-app.post('/login', passport.authenticate('local', {
-  successRedirect: '/',
-  failureRedirect: '/login',
-  failureFlash: true
-}))
-
-function auth(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  } else {
-    return res.redirect('/login');
-  }
-}
-
-app.get('/admin', auth, (req, res) => {
-  console.log('route/req session >>>', req.session);
-  res.send('admin page');
-});
-
-app.get('/logout', function(req, res){
-  req.logout();
-  res.redirect('/');
-});
+app.use('/', indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
