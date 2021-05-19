@@ -12,7 +12,16 @@ input {
   margin-bottom: 10px;
 }
 
+.cont {
+  display: flex;
+  justify-content: space-between;
+  width: 205px;
+}
+
 input[type=submit]{
+  width: 70px;
+}
+input[type=button]{
   width: 70px;
 }
 

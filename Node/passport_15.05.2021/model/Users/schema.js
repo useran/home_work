@@ -10,7 +10,13 @@ const userSchema = new Schema({
   hash: {
     type: String,
     required: true
-  }}, 
+  }, 
+  name: {
+    type: String,
+  },
+  strategy: {
+    type: String,
+  }},  
   { timestamps: true }
 );
 

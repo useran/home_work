@@ -7,9 +7,9 @@ const session = require('express-session');
 const MongoStore  = require('connect-mongo');
 const passport = require('passport');
 const { RequestHeaderFieldsTooLarge } = require('http-errors');
-require('./passport-config');
 
 const indexRouter = require('./routes/index');
+
 
 const app = express();
 
@@ -38,10 +38,15 @@ app.use(
   })
 )
 
+//Passport config
+require('./config/passport-config');
+require('./config/google-config');
+
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/', indexRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

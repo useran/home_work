@@ -4,9 +4,17 @@ const path = require('path');
 const { createHash } = require('crypto');
 
 userSchema.statics.findByEmail = async function(email){
-    const dataOut = await this.findOne({ email: email });
-    return dataOut;
+  const dataOut = await this.findOne({ email: email });
+  return dataOut;
+}
+
+userSchema.statics.createUser = async function(obj){
+  try {
+    await this.create(obj);
+  } catch(err) {
+    return err.message;
   }
+}
 
 userSchema.methods.checkForPassLog = function(obj){
   return this.hash === obj.hash ? true : false;
