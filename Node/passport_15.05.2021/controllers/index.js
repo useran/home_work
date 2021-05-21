@@ -13,6 +13,7 @@ const getRegister = (req, res) => {
 };
 
 const registerFunc = async(req, res) => {
+  req.body.strategy = 'localStrategy';
   try {
     await Users.createUser(req.body);
     res.redirect('/login')
@@ -25,14 +26,6 @@ const getAdmin = (req, res) => {
   res.render('admin', { name: req.user.name ? req.user.name : req.user.firstName });
 };
 
-const getLogOut = (req, res) => {
-  req.logout();
-  res.redirect('/');
-};
-
-const getGoogle = (req, res) => {
-  res.redirect('/admin');
-};
 
 
 module.exports = {
@@ -41,7 +34,5 @@ module.exports = {
   getRegister,
   registerFunc,
   getAdmin,
-  getLogOut,
-  getGoogle
 }
 

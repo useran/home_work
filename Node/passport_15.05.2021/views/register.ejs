@@ -7,7 +7,7 @@
   <body>
     <% if (logged) { %>
       <div class="output">You are already registered!</div><br>
-      <form action="/logout" method="get">
+      <form action="/auth/logout" method="get">
         <input id="login" type="submit" value="Log Out">
       </form>
     <%} else {%>

@@ -9,10 +9,9 @@ const passport = require('passport');
 const { RequestHeaderFieldsTooLarge } = require('http-errors');
 
 const indexRouter = require('./routes/index');
-
+const authRouter = require('./routes/auth');
 
 const app = express();
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -38,14 +37,11 @@ app.use(
   })
 )
 
-//Passport config
-require('./config/passport-config');
-require('./config/google-config');
-
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/', indexRouter);
+app.use('/auth', authRouter);
 
 
 // catch 404 and forward to error handler

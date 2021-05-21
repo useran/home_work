@@ -1,7 +1,7 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const Users = require('../model/Users/index.js');
-const Profile = require('../model/Profiles/index.js');
+const Users = require('../../../model/Users/index.js');
+const Profile = require('../../../model/Profiles/index.js');
 
 let strategy = '';
 
@@ -11,11 +11,11 @@ passport.serializeUser(function(user, done) {
 })
 
 passport.deserializeUser((id, done) => {
-  if (strategy) {
+  if (strategy === 'googleStrategy') {
     Profile.findById(id, (err, user) => {
       done(err, user);
     })
-  } else {
+  } else if (strategy === 'localStrategy') {
     Users.findById(id, (err, user) => {
       done(err, user);
     })

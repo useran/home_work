@@ -1,10 +1,10 @@
 var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-const Profile = require('../model/Profiles/index.js');
+const Profile = require('../../../model/Profiles/index.js');
 
 passport.use(new GoogleStrategy({
-    clientID: CLIENT_ID,
-    clientSecret: CLIENT_SECRET,
+    clientID: '298730878115-e3fk2mng62shr5oc038tv39fvc6eatff.apps.googleusercontent.com',
+    clientSecret: 'CLIENT_SECRET',
     callbackURL: '/auth/google/callback'
   },
   async(accessToken, refreshToken, profile, done) => {
@@ -12,10 +12,10 @@ passport.use(new GoogleStrategy({
       googleId: profile.id,
       firstName: profile.name.givenName,
       lastName: profile.name.familyName,
-      strategy: profile.provider
+      strategy: 'googleStrategy'
     }
     try {
-      let user = await  Profile.findOne({ googleId: profile.id })
+      let user = await Profile.findOne({ googleId: profile.id })
       if (user) {
         done(null, user)
       } else {
