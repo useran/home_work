@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TinyLinks</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h3>Make your URL shorter!</h3>
+
+    <form class="input-form">
+      <textarea name="longLink" id="" cols="30" rows="12"></textarea>
+      <input type="submit" name="submit" id="" value="Go!">
+    </form>
+
+    <div class="container">
+      Result:
+      <div class="new-link"></div>
+      <input type="submit" name="submit" id="copyEl" value="Copy">
+    </div>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js'></script>
+    <script src="https://rawgit.com/moment/moment/2.2.1/min/moment.min.js"></script>
+    <script src='/js/main.js'></script>
+  </body>
+</html>
