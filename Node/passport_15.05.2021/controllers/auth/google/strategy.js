@@ -4,7 +4,7 @@ const Profile = require('../../../model/Profiles/index.js');
 
 passport.use(new GoogleStrategy({
     clientID: '298730878115-e3fk2mng62shr5oc038tv39fvc6eatff.apps.googleusercontent.com',
-    clientSecret: 'z8Qz13I4E70TFUX52huSUYGm',
+    clientSecret: '',
     callbackURL: '/auth/google/callback'
   },
   async(accessToken, refreshToken, profile, done) => {
