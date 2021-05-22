@@ -6,7 +6,7 @@ formEl.addEventListener("submit", function(event) {
   event.preventDefault();
   const data = new FormData(formEl);
   axios.post('/', data)
-    .then(r => newLinkEl.innerHTML = r.data)
+    .then(r => newLinkEl.innerHTML = `http://127.0.0.1:3000/${r.data}`)
     .catch(e => answEl.innerHTML = `ERROR: ${e}`);
 })
 

@@ -1,5 +1,5 @@
 const Links = require('../model/Links/index.js');
-const randomValue = require('./randomValue');
+const randomStr = require('./randomStr');
 
 
 const getIndex = (req, res) => {
@@ -7,7 +7,7 @@ const getIndex = (req, res) => {
 };
 
 const saveLink = async(req, res) => {
-  req.body.shortLink = randomValue(6);
+  req.body.shortLink = randomStr(6);
   await Links.createEntry(req.body);
   res.send(req.body.shortLink);
 };
