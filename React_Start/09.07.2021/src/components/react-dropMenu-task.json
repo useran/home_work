@@ -1,0 +1,46 @@
+{
+	"type": "static",
+	"properties": {
+	
+		"MainMenu": {
+			"font": "h2",
+			"type": "static",
+			"properties": {
+			
+				"menu1": {
+					"font": "h4",
+					"type": "dropp",
+					"properties": {
+					
+						"item11": {
+							"font": "h5",
+							"type": "static"
+						},
+						
+						"item12": {
+							"font": "h5",
+							"type": "static"
+						}
+					}
+				},
+				
+				"menu2": {
+					"font": "h4",
+					"type": "dropp",
+					"properties": {
+					
+						"item21": {
+							"font": "h5",
+							"type": "static"
+						},
+						
+						"item22": {
+							"font": "h5",
+							"type": "static"
+						}
+					}
+				}
+			}
+		}
+	}
+}
