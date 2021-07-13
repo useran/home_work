@@ -1,11 +1,9 @@
 import './Result.css';
-import Input from './Input';
 
-function Result({ res, setRes }) {
+function Result({ res }) {
 
   return (
     <div className = 'result'>
-      <Input setRes={setRes} /> 
       <input value={res} />
     </div>
   );
