@@ -4,22 +4,20 @@ import Result from './Result';
 import Input from './Input';
 import Button from './Button';
 
+
 function App() {
   const [res, setRes] = useState(0);
-
-  const operations = () => {
-    const operArr = ['+', '-', '*', '/'];
-    const btnArr = operArr.map((el, index) => <Button key={index} setRes={setRes} operation={el}/>)
-    return btnArr;
-  }
-
+  
+  const operArr = ['+', '-', '*', '/'];
+  const btnCompArr = operArr.map((el, index) => <Button key={index} setRes={setRes} operation={el}/>)
+  
   return (
     <div className = 'App'>
       <Input />
       <div className='operations'>
-        {operations()}
+        {btnCompArr}
       </div>
-      <Result res={res} setRes={setRes}/>
+      <Result res={res} />
     </div>
   );
 }

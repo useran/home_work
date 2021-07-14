@@ -1,9 +1,9 @@
 import './Input.css';
 
-function Input({inputArr}) {
+function Input() {
 
   return (
-    <div className = 'input'> 
+    <div className='input'> 
       <input className='value' />
       <input className='value' />
     </div>
