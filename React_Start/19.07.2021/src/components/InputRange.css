@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  justify-content: 'space-between'
+}
+
+input {
+  width: 200px;
+  margin-right: 20px;
+  border: 1px solid gray;
+  border-radius: 3px;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  width: 800px;
+  height: 10px;
+  background-color: darkcyan;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background-color: darkorange;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.wrap-container {
+  margin-top: 20px;
+  width: 800px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
